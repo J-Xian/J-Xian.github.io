@@ -177,11 +177,16 @@ footer a:hover {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.wip-banner:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
 /* Optional fade-in animation */
 .fade-in {
   opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.8s ease-out forwards;
+  transform: translateY(-40px);
+  animation: slideDownFade 0.6s ease-out forwards;
 }
 
 @keyframes fadeInUp {
