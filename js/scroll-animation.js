@@ -1,20 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const faders = document.querySelectorAll('.fade-in');
+document.addEventListener("DOMContentLoaded", function () {
+  const fadeIns = document.querySelectorAll(".fade-in");
 
-  const appearOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
-  const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
     });
-  }, appearOptions);
-
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
+  }, {
+    threshold: 0.1
   });
+
+  fadeIns.forEach((el) => observer.observe(el));
 });
