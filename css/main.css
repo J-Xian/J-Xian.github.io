@@ -174,7 +174,7 @@ footer a:hover {
   text-align: center;
   max-width: 640px;
   margin: 2rem auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .wip-banner:hover {
@@ -189,7 +189,7 @@ footer a:hover {
   animation: slideDownFade 0.6s ease-out forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes slideDownFade {
   to {
     opacity: 1;
     transform: translateY(0);
