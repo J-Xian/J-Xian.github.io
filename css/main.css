@@ -162,3 +162,11 @@ footer a:hover {
     right: 1rem;
   }
 }
+
+.wip-banner {
+  font-size: 1rem;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+  text-align: center;
+  opacity: 0.8;
+}
