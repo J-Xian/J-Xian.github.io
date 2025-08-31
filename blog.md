@@ -2,14 +2,15 @@
 layout: default
 title: Blog
 ---
-<p align="center">
-## Blog 
-</p>
+<header class="text-center">
+<h1 class="text-4xl md:text-5xl font-bold text-orange mb-2">Blog</h1>
+</header>
+
 ## (This page contains placeholder content for layout and testing purposes. Updates coming soon.)
 
-<p align="center">
+
 ### My OSCP Journey & VAPT Reports
-</p>
+
 Welcome to my blog, where I document my journey to becoming a certified penetration tester. This section features professional-grade Vulnerability Assessment and Penetration Testing (VAPT) reports. Each report is a detailed account of a simulated engagement, from initial reconnaissance to exploitation and post-exploitation.
 
 The goal of these reports is to showcase a methodical and thorough approach to security testing.
