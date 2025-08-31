@@ -175,11 +175,6 @@ footer a:hover {
   max-width: 640px;
   margin: 2rem auto;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
 }
 
 .wip-banner:hover {
