@@ -2,9 +2,7 @@
 layout: default
 title: Blog
 ---
-<header class="text-center">
-<h1 class="text-4xl md:text-5xl font-bold text-orange mb-2">Blog</h1>
-</header>
+## Blog
 
 ## (This page contains placeholder content for layout and testing purposes. Updates coming soon.)
 
@@ -19,47 +17,47 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <div class="blog-post-item">
 [Report Title: Targeted Compromise of a Corporate Web Server]
 <br>
-Date: [Date of Report]
+• Date: [Date of Report]
 <br>
 <br>
-Summary: A detailed report on the discovery and exploitation of critical vulnerabilities in a web server, leading to a complete system compromise.
+• Summary: A detailed report on the discovery and exploitation of critical vulnerabilities in a web server, leading to a complete system compromise.
 <br>
 <br>
-Methodology: Nmap scanning, directory enumeration, SQL injection, and privilege escalation.
+• Methodology: Nmap scanning, directory enumeration, SQL injection, and privilege escalation.
 <br>
 <br>
-Link: [Link to PDF report or detailed Markdown page]
+• Link: [Link to PDF report or detailed Markdown page]
 
 </div>
 
 <div class="blog-post-item">
 [Report Title: Phishing Campaign Analysis and Infrastructure Hardening]
 <br>
-Date: [Date of Report]
+• Date: [Date of Report]
 <br>
 <br>
-Summary: An analysis of a simulated phishing attack, including the social engineering tactics used and recommendations for improving employee security awareness and email filtering.
+• Summary: An analysis of a simulated phishing attack, including the social engineering tactics used and recommendations for improving employee security awareness and email filtering.
 <br>
 <br>
-Methodology: OSINT, spear phishing, credential harvesting, and network defense strategies.
+• Methodology: OSINT, spear phishing, credential harvesting, and network defense strategies.
 <br>
 <br>
-Link: [Link to PDF report or detailed Markdown page]
+• Link: [Link to PDF report or detailed Markdown page]
 
 </div>
 
 <div class="blog-post-item">
 [Report Title: Internal Network Penetration Test: Active Directory Hijacking]
 <br>
-Date: [Date of Report]
+• Date: [Date of Report]
 <br>
 <br>
-Summary: A comprehensive report on an internal network test, focusing on lateral movement, weak password policies, and the complete takeover of a domain controller.
+• Summary: A comprehensive report on an internal network test, focusing on lateral movement, weak password policies, and the complete takeover of a domain controller.
 <br>
 <br>
-Methodology: Internal network scanning, password spraying, Kerberoasting, and domain persistence techniques.
+• Methodology: Internal network scanning, password spraying, Kerberoasting, and domain persistence techniques.
 <br>
 <br>
-Link: [Link to PDF report or detailed Markdown page]
+• Link: [Link to PDF report or detailed Markdown page]
 
 </div>
