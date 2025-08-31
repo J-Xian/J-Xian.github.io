@@ -182,7 +182,7 @@ body[data-theme="light"] #theme-toggle {
 
 /* General Content Styling */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--accent-color);
+  color: #60A5FA;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
