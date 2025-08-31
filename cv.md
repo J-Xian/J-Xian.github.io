@@ -12,5 +12,5 @@ My CV details my skills, qualifications, and experience in the field of cybersec
 You can download my full CV in PDF format by clicking the button below.
 
 <p align="center">
-<a href="/blob/main/File/JingXianChing_CV.pdf" download class="button">Download CV</a>
+<a href="File/JingXianChing_CV.pdf" download class="button">Download CV</a>
 </p>
