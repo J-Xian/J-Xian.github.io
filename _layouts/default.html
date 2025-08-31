@@ -24,7 +24,7 @@
     </nav>
 
     <div class="container">
-      <main class="main-content fade-in">
+      <main class="main-content">
         {{ content }}
       </main>
     </div>
@@ -37,49 +37,7 @@
       </ul>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-            const icon = themeToggle.querySelector('i');
-            const mainContent = document.querySelector('.main-content');
-
-            // Apply fade-in animation
-            setTimeout(() => {
-                mainContent.classList.add('visible');
-            }, 500);
-
-            // Theme toggle logic
-            themeToggle.addEventListener('click', () => {
-                if (body.getAttribute('data-theme') === 'light') {
-                    body.removeAttribute('data-theme');
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                } else {
-                    body.setAttribute('data-theme', 'light');
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                }
-            });
-
-            // Intersection Observer for scroll-based effects
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with the 'fade-in' class
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        });
-    </script>
+    <!-- All JavaScript is now in a separate file for better organization and performance -->
+    <script src="/js/main.js"></script>
   </body>
 </html>
