@@ -4,22 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }}</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body data-theme="dark">
-    <button id="theme-toggle" title="Switch theme">
-      <i class="fas fa-moon"></i>
-    </button>
     <nav>
       <ul>
         <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
-        <li><a href="/about" {% if page.url contains "/about" %}class="active"{% endif %}>About</a></li>
-        <li><a href="/cv" {% if page.url contains "/cv" %}class="active"{% endif %}>CV</a></li>
-        <li><a href="/blog" {% if page.url contains "/blog" %}class="active"{% endif %}>Blog</a></li>
+        <li><a href="/about" {% if page.url == "/about/" %}class="active"{% endif %}>About</a></li>
+        <li><a href="/cv" {% if page.url == "/cv/" %}class="active"{% endif %}>CV</a></li>
+        <li><a href="/blog" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a></li>
       </ul>
     </nav>
 
@@ -31,13 +26,14 @@
 
     <footer>
       <ul>
-        <li><a href="mailto:jingxian06@hotmail.com" class="footer-link"><i class="fas fa-envelope"></i> email</a></li>
+        <li><a href="mailto:jingxian06@hotmail.com" class="footer-link"><i class="fas fa-envelope"></i> My Email</a></li>
         <li><a href="https://github.com/J-Xian" class="footer-link"><i class="fab fa-github"></i> github.com/J-Xian</a></li>
         <li><a href="https://www.linkedin.com/in/j-xian" class="footer-link"><i class="fab fa-linkedin"></i> linkedin.com/in/J-Xian</a></li>
       </ul>
     </footer>
 
-    <!-- All JavaScript is now in a separate file for better organization and performance -->
-    <script src="/js/main.js"></script>
+    <button id="theme-toggle" title="Switch theme"><i class="fas fa-moon"></i></button>
+    <script src="/js/theme-toggle.js"></script>
+    <script src="/js/scroll-animation.js"></script>
   </body>
 </html>
