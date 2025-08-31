@@ -13,6 +13,8 @@ body {
   font-family: var(--font-family-body);
   line-height: 1.7; /* Increased for better readability */
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Reset the counter for blog posts */
+  counter-reset: blog-post-counter;
 }
 
 body[data-theme="light"] {
@@ -159,6 +161,23 @@ footer ul {
     line-height: 1.7;
 }
 
+/* New CSS to handle blog post numbering and layout */
+.blog-post-item {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.blog-post-item::before {
+    counter-increment: blog-post-counter;
+    content: counter(blog-post-counter) ".";
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-right: 1.5rem;
+}
+
 /* Work-in-Progress Banner */
 .wip-banner {
   background-color: #f5e4b8;
@@ -270,16 +289,19 @@ footer ul {
 
   /* Blog page mobile styling */
   .blog-post h3 {
-    text-align: left;
+    font-size: 1.2rem;
+    margin-top: 1rem;
   }
 
   /* Adjust the blog list for mobile view */
-  ol {
-    padding-left: 1.5rem;
+  .blog-post-item {
+    flex-direction: column;
     text-align: left;
+    padding-left: 1rem;
   }
 
-  li {
-    margin-bottom: 1rem;
+  .blog-post-item::before {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
 }
