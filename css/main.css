@@ -1,15 +1,20 @@
-/* Root Variables for Theme */
+/* Root Theme Variables */
 :root {
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --link-color: #4fc3f7;
-  --accent-color: #ffd54f;
+  --accent-color: #ffb74d;
   --font-family: 'Inter', sans-serif;
 }
 
-body {
+/* Reset and Base Styles */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family);
@@ -22,6 +27,10 @@ nav {
   position: fixed;
   top: 2rem;
   left: 2rem;
+}
+
+nav ul {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -38,24 +47,54 @@ nav a:hover {
   color: var(--accent-color);
 }
 
-/* Theme Toggle Icon */
-.theme-toggle {
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+footer a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent-color);
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
   position: fixed;
   top: 2rem;
   right: 2rem;
+  background: none;
+  border: none;
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--accent-color);
 }
 
-/* Hero Section */
-.hero {
+/* Container and Main Content */
+.container {
   padding: 6rem 2rem 4rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
-  text-align: center;
 }
 
+.main-content {
+  text-align: center;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Hero Section */
 .hero-heading {
   font-size: 2.5rem;
   font-weight: bold;
@@ -65,6 +104,7 @@ nav a:hover {
 
 .hero-paragraph {
   font-size: 1.2rem;
+  line-height: 1.6;
   color: var(--text-color);
 }
 
@@ -74,18 +114,18 @@ nav a:hover {
 }
 
 /* Fade-in Animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Responsive Adjustments */
+/* Responsive Design */
 @media (max-width: 600px) {
   .hero-heading {
     font-size: 2rem;
@@ -100,7 +140,12 @@ nav a:hover {
     left: 1rem;
   }
 
-  .theme-toggle {
+  footer {
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  #theme-toggle {
     top: 1rem;
     right: 1rem;
   }
