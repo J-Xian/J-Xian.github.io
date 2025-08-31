@@ -1,5 +1,7 @@
 # J-Xian.github.io
 # Jing Xian's Cybersecurity Portfolio
+🚧 **Under Construction**  
+Like any good exploit chain, this site is being built step-by-step. Stay tuned.
 
 Welcome to my digital playground — a creative and professional portfolio showcasing my transition into cybersecurity. This site blends ethical hacking tools, interactive web design, and personal branding to reflect both technical depth and creative identity.
 
