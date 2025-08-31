@@ -19,13 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Add fade-in effect to content on page load
+    // Add fade-in effect to hero content on page load
     const heroSection = document.querySelector('.hero');
-    const wipBanner = document.querySelector('.wip-banner');
     if (heroSection) {
         heroSection.classList.add('visible');
-    }
-    if (wipBanner) {
-        wipBanner.classList.add('visible');
     }
 });
