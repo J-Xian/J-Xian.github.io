@@ -1,27 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    const storedTheme = localStorage.getItem('theme');
+    const icon = themeToggle.querySelector('i');
 
-    // Apply the stored theme on page load
-    if (storedTheme) {
-        body.setAttribute('data-theme', storedTheme);
+    // Check for saved theme preference in local storage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'light') {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
     }
 
-    // Handle the theme toggle click
     themeToggle.addEventListener('click', () => {
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
+        if (body.getAttribute('data-theme') === 'light') {
+            body.removeAttribute('data-theme');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.removeItem('theme');
         } else {
-            body.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
+            body.setAttribute('data-theme', 'light');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'light');
         }
     });
-
-    // Add fade-in effect to hero content on page load
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.classList.add('visible');
-    }
 });
