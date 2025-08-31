@@ -13,36 +13,39 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 ### Latest Reports
 <div class="blog-post-item">
 [Report Title: Targeted Compromise of a Corporate Web Server]
+<br>
 Date: [Date of Report]
-
+<br>
 Summary: A detailed report on the discovery and exploitation of critical vulnerabilities in a web server, leading to a complete system compromise.
-
+<br>
 Methodology: Nmap scanning, directory enumeration, SQL injection, and privilege escalation.
-
+<br>
 Link: [Link to PDF report or detailed Markdown page]
 
 </div>
 
 <div class="blog-post-item">
 [Report Title: Phishing Campaign Analysis and Infrastructure Hardening]
+<br>
 Date: [Date of Report]
-
+<br>
 Summary: An analysis of a simulated phishing attack, including the social engineering tactics used and recommendations for improving employee security awareness and email filtering.
-
+<br>
 Methodology: OSINT, spear phishing, credential harvesting, and network defense strategies.
-
+<br>
 Link: [Link to PDF report or detailed Markdown page]
 
 </div>
 
 <div class="blog-post-item">
 [Report Title: Internal Network Penetration Test: Active Directory Hijacking]
+<br>
 Date: [Date of Report]
-
+<br>
 Summary: A comprehensive report on an internal network test, focusing on lateral movement, weak password policies, and the complete takeover of a domain controller.
-
+<br>
 Methodology: Internal network scanning, password spraying, Kerberoasting, and domain persistence techniques.
-
+<br>
 Link: [Link to PDF report or detailed Markdown page]
 
 </div>
