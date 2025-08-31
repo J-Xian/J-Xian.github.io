@@ -27,7 +27,8 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-
+<br>
+<br>
 </div>
 
 <div class="blog-post-item">
@@ -43,7 +44,8 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-
+<br>
+<br>
 </div>
 
 <div class="blog-post-item">
@@ -59,5 +61,6 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-
+<br>
+<br>
 </div>
