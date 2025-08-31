@@ -49,7 +49,7 @@ nav a {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  color: var(--link-color); /* Correctly inherits link color */
+  color: var(--link-color);
 }
 
 nav a:hover, nav a.active {
@@ -73,13 +73,21 @@ footer ul {
   gap: 0.5rem;
 }
 
-footer a {
-  color: var(--link-color);
+.footer-link {
   text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  color: var(--link-color);
 }
 
-footer a:hover {
-  color: var(--accent-color);
+.footer-link:hover {
+  background-color: var(--link-color);
+  color: var(--bg-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Theme Toggle */
@@ -144,9 +152,15 @@ footer a:hover {
   max-width: 640px;
   margin: 2rem auto;
   position: relative;
-  /* The animation is now handled in scroll-animation.js */
-  opacity: 0; 
+  /* Initial state for the slide-in effect */
+  opacity: 0;
   transform: translateY(-200%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.wip-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .wip-banner:hover {
