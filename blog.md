@@ -2,8 +2,11 @@
 layout: default
 title: Blog
 ---
+<h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Cybersecurity Reports</h1>
 
-## Blog (This page contains placeholder content for layout and testing purposes. Updates coming soon.)
+## (This page contains placeholder content for layout and testing purposes. Updates coming soon.)
+
+## Blog 
 
 ### My OSCP Journey & VAPT Reports
 Welcome to my blog, where I document my journey to becoming a certified penetration tester. This section features professional-grade Vulnerability Assessment and Penetration Testing (VAPT) reports. Each report is a detailed account of a simulated engagement, from initial reconnaissance to exploitation and post-exploitation.
