@@ -85,6 +85,12 @@ footer a:hover {
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--accent-color);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.2) rotate(10deg);
+  color: var(--link-color);
 }
 
 /* Container */
