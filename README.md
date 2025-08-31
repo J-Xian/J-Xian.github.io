@@ -1,4 +1,3 @@
-# J-Xian.github.io
 # Jing Xian's Cybersecurity Portfolio
 🚧 **Under Construction** 🚧
 Like any good exploit chain, this site is being built step-by-step. Stay tuned.
