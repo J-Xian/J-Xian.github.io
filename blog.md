@@ -5,7 +5,7 @@ title: Blog
 
 ## Blog (This page contains placeholder content for layout and testing purposes. Updates coming soon.)
 
-###My OSCP Journey & VAPT Reports
+### My OSCP Journey & VAPT Reports
 Welcome to my blog, where I document my journey to becoming a certified penetration tester. This section features professional-grade Vulnerability Assessment and Penetration Testing (VAPT) reports. Each report is a detailed account of a simulated engagement, from initial reconnaissance to exploitation and post-exploitation.
 
 The goal of these reports is to showcase a methodical and thorough approach to security testing.
