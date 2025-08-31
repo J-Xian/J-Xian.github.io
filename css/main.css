@@ -15,7 +15,7 @@ body {
 }
 
 body[data-theme="light"] {
-  --bg-color: #ffffff;
+  --bg-color: #faedcd;
   --text-color: #222222;
   --link-color: #007acc;
   --accent-color: #ff9800;
