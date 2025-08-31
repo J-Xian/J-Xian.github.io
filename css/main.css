@@ -147,6 +147,18 @@ footer ul {
   text-decoration: underline;
 }
 
+/* Blog Content */
+.blog-post h3 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.blog-post p {
+    margin: 0.5rem 0;
+    line-height: 1.7;
+}
+
 /* Work-in-Progress Banner */
 .wip-banner {
   background-color: #f5e4b8;
@@ -160,7 +172,8 @@ footer ul {
   max-width: 640px;
   margin: 2rem auto;
   position: relative;
-  animation: fadeIn 1s ease-out;
+  opacity: 0;
+  animation: slideDownFade 1s ease-out forwards;
 }
 
 .wip-banner:hover {
@@ -168,12 +181,18 @@ footer ul {
   transform: translateY(-2px);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes slideDownFade {
+  from {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Fade-in Animation */
+/* Fade-in Animation for pages */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -237,8 +256,8 @@ footer ul {
     display: block;
   }
   footer ul {
-    flex-direction: column; /* Re-flow to a column to prevent overshooting */
-    align-items: center; /* Center the column */
+    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
   }
   .footer-link {
@@ -247,5 +266,20 @@ footer ul {
   .wip-banner {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
+  }
+
+  /* Blog page mobile styling */
+  .blog-post h3 {
+    text-align: left;
+  }
+
+  /* Adjust the blog list for mobile view */
+  ol {
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  li {
+    margin-bottom: 1rem;
   }
 }
