@@ -125,18 +125,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Fade-in Animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* Responsive */
 @media (max-width: 600px) {
   .hero-heading {
@@ -163,6 +151,7 @@ footer a:hover {
   }
 }
 
+/* Work-in-Progress Banner */
 .wip-banner {
   background-color: #f5e4b8;
   color: #2c2c2c;
@@ -175,6 +164,11 @@ footer a:hover {
   max-width: 640px;
   margin: 2rem auto;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  
+  /* Initial state for the slide-in animation */
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: slideInFromTop 1s forwards ease-out;
 }
 
 .wip-banner:hover {
@@ -182,16 +176,10 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
-/* Optional fade-in animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(-40px);
-  animation: slideDownFade 0.6s ease-out forwards;
-}
-
-@keyframes slideDownFade {
+/* Keyframe animation for the slide-in effect */
+@keyframes slideInFromTop {
   to {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }
