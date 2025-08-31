@@ -27,10 +27,10 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-<br>
-<br>
-</div>
 
+</div>
+<br>
+<br>
 <div class="blog-post-item">
 [Report Title: Phishing Campaign Analysis and Infrastructure Hardening]
 <br>
@@ -44,10 +44,10 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-<br>
-<br>
-</div>
 
+</div>
+<br>
+<br>
 <div class="blog-post-item">
 [Report Title: Internal Network Penetration Test: Active Directory Hijacking]
 <br>
@@ -61,6 +61,7 @@ The goal of these reports is to showcase a methodical and thorough approach to s
 <br>
 <br>
 • Link: [Link to PDF report or detailed Markdown page]
-<br>
-<br>
+
 </div>
+<br>
+<br>
