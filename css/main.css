@@ -165,10 +165,11 @@ footer a:hover {
   margin: 2rem auto;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   
-  /* Initial state for the slide-in animation */
-  transform: translateY(-100%);
-  opacity: 0;
-  animation: slideInFromTop 1s forwards ease-out;
+  /* Add this line */
+  position: relative; 
+  
+  /* Update the animation property */
+  animation: slideInFromTop 3s forwards ease-out;
 }
 
 .wip-banner:hover {
@@ -176,9 +177,14 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
-/* Keyframe animation for the slide-in effect */
 @keyframes slideInFromTop {
+  from {
+    /* Starts from off-screen top, relative to its position */
+    transform: translateY(-200%); 
+    opacity: 0;
+  }
   to {
+    /* Ends at its final position */
     transform: translateY(0);
     opacity: 1;
   }
