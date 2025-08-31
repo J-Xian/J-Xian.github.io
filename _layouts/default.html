@@ -1,36 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/css/main.css" />
-  </head>
-  <body data-theme="dark">
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/cv">CV</a></li>
-        <li><a href="/blog">Blog</a></li>
-      </ul>
-    </nav>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{{ page.title }}</title>
+      <link rel="stylesheet" href="/css/main.css" />
+    </head>
+    <body data-theme="dark">
+      <nav>
+        <ul>
+          <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
+          <li><a href="/about" {% if page.url == "/about/" %}class="active"{% endif %}>About</a></li>
+          <li><a href="/cv" {% if page.url == "/cv/" %}class="active"{% endif %}>CV</a></li>
+          <li><a href="/blog" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a></li>
+        </ul>
+      </nav>
 
-    <div class="container">
-      <main class="main-content fade-in">
-        {{ content }}
-      </main>
-    </div>
+      <div class="container">
+        <main class="main-content">
+          {{ content }}
+        </main>
+      </div>
 
-    <footer>
-      <ul>
-        <li><a href="mailto:">email</a></li>
-        <li><a href="https://github.com/J-Xian">github.com/J-Xian</a></li>
-      </ul>
-    </footer>
+      <footer>
+        <ul>
+          <li><a href="mailto:">email</a></li>
+          <li><a href="https://github.com/J-Xian">github.com/J-Xian</a></li>
+        </ul>
+      </footer>
 
-    <button id="theme-toggle" title="Switch theme">🌙</button>
-    <script src="/js/theme-toggle.js"></script>
-    <script src="/js/scroll-animation.js"></script>
-  </body>
-</html>
+      <button id="theme-toggle" title="Switch theme">🌙</button>
+      <script src="/js/theme-toggle.js"></script>
+      <script src="/js/scroll-animation.js"></script>
+    </body>
+    </html>
+    
