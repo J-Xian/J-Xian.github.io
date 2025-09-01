@@ -97,7 +97,7 @@ nav a.active {
 
 /* Work-in-Progress Banner */
 .wip-banner {
-  background-color: var(--text-color);
+  background-color: #60A5FA;
   color: #2c2c2c;
   padding: 1rem 1.5rem;
   border-radius: 12px;
