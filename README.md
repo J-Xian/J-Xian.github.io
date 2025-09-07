@@ -37,6 +37,7 @@ I also used semantic HTML and modular CSS to keep the codebase clean and scalabl
 ### 🧪 Certifications Timeline
 | Certification              | Status        | Target Date     |
 |---------------------------|---------------|-----------------|
+| Certified in Cybersecurity (CC) | ✅ Completed | Nov 2024        |
 | Certified Ethical Hacker (CEH)  | ✅ Completed | Aug 2025        |
 | Offensive Security Certified Professional (OSCP) | 🧠 Self-study begins | Oct 2025        |
 | OSCP Certification         | 🎯 Goal       | Mar 2026        |
@@ -61,7 +62,7 @@ I also used semantic HTML and modular CSS to keep the codebase clean and scalabl
 
 ## 👤 About Me
 
-I'm Jing Xian — a cybersecurity explorer. I approach both technical and interpersonal challenges with emotional intelligence, strategic reflection, and a touch of creative flair. This portfolio is more than a showcase; it's a space where curiosity meets code, and where I experiment with visual storytelling, subtle animations, and authentic branding.
+I'm Jing Xian — a full-stack developer turned cybersecurity explorer. I approach both technical and interpersonal challenges with emotional intelligence, strategic reflection, and a touch of creative flair. This portfolio is more than a showcase; it's a space where curiosity meets code, and where I experiment with visual storytelling, subtle animations, and authentic branding.
 
 Whether I'm decoding vulnerabilities or refining UX, I believe in thoughtful design, iterative growth, and building genuine connections — online and off.
 
