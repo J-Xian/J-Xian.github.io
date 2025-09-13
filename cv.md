@@ -16,6 +16,6 @@ You can download my full CV in PDF format by clicking the button below.
 
 <p align="center">
 
-<a href="/File/JingXianChing_CV.pdf" download class="cool-button">Download CV</a>
+<a href="/File/Jing_Xian_Ching_CV.pdf" download class="cool-button">Download CV</a>
 
 </p>
