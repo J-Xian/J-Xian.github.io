@@ -19,8 +19,6 @@
 ## What’s in this repo
 - `index.html` — Portfolio site (GitHub Pages / Jekyll).  
 - `writeups/` — Published writeups (sanitized PoC, screenshots, remediation).  
-- `poC/` — Safe, sanitized proof-of-concept scripts (lab-only).  
-- `screenshots/` — Images used in writeups (1280×720).  
 - `cv.pdf` — One-page CV (downloadable).
 
 ---
