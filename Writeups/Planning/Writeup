@@ -1,54 +1,66 @@
-# Planning — Grafana RCE → container foothold → root via cron (Lab)
+Planning — Grafana RCE → container foothold → root via cron (Lab)
 
-**Date:** 2025-10-16
-**TL;DR:** Discovered a Grafana virtual host (`grafana.planning.htb`) via host-header fuzzing. Using lab-provided Grafana credentials and a known Grafana SQL-expression RCE PoC (run in-lab), I obtained a shell inside the Grafana container, recovered internal credentials and a cron/backup password, used those credentials to access an internal web admin on `127.0.0.1:8000` (via SSH port-forward), and escalated to root by abusing a cron job that executed web-writable content. All actions were performed on a retired HackTheBox VM in an isolated lab.
+Date: 2025-10-16
+TL;DR: Discovered a Grafana virtual host (`grafana.planning.htb`) via host-header fuzzing. Using lab-provided Grafana credentials and a known Grafana SQL-expression RCE PoC (run in-lab), I obtained a shell inside the Grafana container, recovered internal credentials and a cron/backup password, used those credentials to access an internal web admin on `127.0.0.1:8000` (via SSH port-forward), and escalated to root by abusing a cron job that executed web-writable content. All actions were performed on a retired HackTheBox VM in an isolated lab.
 
----
+Scope & permission
 
-## Scope & permission
-All testing was performed on a retired HackTheBox machine in a lab I control. Public artifacts and commands in this writeup are **sanitized** for publication. Do **not** run exploit code or destructive commands against third-party or production systems.
+This work was performed on a retired HackTheBox machine in a lab I control. All commands and artifacts in this document are sanitized for public release. Do not run exploit code against third-party or production systems.
 
----
+Environment & notable findings
 
-## Environment & notable findings
 - Target: `TARGET_IP` (`planning.htb`) — (lab IP used during testing)
 - Services discovered (sanitized output):
-  - SSH — OpenSSH 9.6p1 (port 22)
-  - HTTP — nginx 1.24.0 (port 80)
-  - Grafana web UI reachable via `grafana.planning.htb` (Grafana v11.0.0)
-  - Internal services bound to `127.0.0.1` inside the host/container: `8000`, `3000`, `3306`, etc.
+- SSH — OpenSSH 9.6p1 (port 22)
+- HTTP — nginx 1.24.0 (port 80)
+- Grafana web UI reachable via `grafana.planning.htb` (Grafana v11.0.0)
+- Internal services bound to `127.0.0.1` inside the host/container: `8000`, `3000`, `3306`, etc.
 - Container evidence: environment `HOSTNAME` looked like a container id.
 
----
+Tools used
 
-## Tools used
 `nmap`, `ffuf`, web browser, `nc` (listener) — plus standard SSH and shell utilities. (Exploit PoC executed in-lab; exploit source is not published here.)
 
----
+Chain summary (short)
 
-## Steps (what I actually did — reproduced from my session)
+nmap → found HTTP (nginx) and host planning.htb.
 
-> The commands below are sanitized.
+ffuf host-header fuzzing → discovered grafana.planning.htb.
 
----
+Add /etc/hosts entry → open http://grafana.planning.htb.
 
-### 1) Port scan
-```bash
+Login to Grafana (lab creds) → note Grafana v11.0.0.
+
+In-lab Grafana SQL-expression RCE PoC → interactive shell inside container.
+
+env revealed GF_SECURITY_ADMIN_USER and GF_SECURITY_ADMIN_PASSWORD.
+
+SSH to host as recovered user (enzo) → capture user.txt.
+
+netstat/ss → internal services on 127.0.0.1:8000 (admin UI).
+
+SSH local port-forward (ssh -L 8000:127.0.0.1:8000 enzo@TARGET) → access internal admin.
+
+Found crontab.db → backup job @daily and backup password (redacted).
+
+Authenticate to internal UI with backup/root credential → admin access.
+
+Abused cron/web-writable input (lab) → chmod u+s /bin/bash → bash -p → root and root.txt.
+
+Detailed, reproducible (sanitized) steps
+1) Port scan
+
 nmap -sCV -T4 --open --stats-every 5s -oA recon TARGET_IP
 
 Observed: open ports 22 (ssh) and 80 (http). HTTP returned nginx and suggested the site planning.htb.
 
----
-
-### 2) Add initial host mapping (so planning.htb resolves locally)
+2) Add initial host mapping (so planning.htb resolves locally)
 
 echo "TARGET_IP planning.htb" | sudo tee -a /etc/hosts
 
 (This lets you open http://planning.htb in a browser.)
 
----
-
-### 3) Virtual-host (vhost) discovery — found grafana.planning.htb
+3) Virtual-host (vhost) discovery — found grafana.planning.htb
 
 I ran host-header fuzzing with ffuf and filtered identical/noise responses; the run produced grafana.planning.htb.
 
@@ -62,15 +74,9 @@ echo "TARGET_IP grafana.planning.htb" | sudo tee -a /etc/hosts
 
 Now http://grafana.planning.htb can be reached from my browser.
 
----
-
-### 4) Access Grafana & identify version
-
+4) Access Grafana & identify version
 Opened http://grafana.planning.htb in the browser — saw the Grafana login page and identified Grafana v11.0.0 (public metadata).
-
----
-
-### 5) Login with provided/lab credentials
+5) Login with provided/lab credentials
 
 Logged into Grafana using the lab-provided credentials:
 
@@ -78,17 +84,12 @@ Username: admin
 
 Password: <GRAFANA_ADMIN_PASS> (redacted for publication)
 
----
-
-### 6) Researched vulnerability (high level)
-
+6) Researched vulnerability (high level)
 From Grafana version info I researched known vulnerabilities and located a public PoC for the Grafana SQL-expression RCE (CVE-2024-9264). I executed that PoC in-lab (exploit source and reverse-shell details omitted here for safety).
 
 Note: I ran a listener locally (on ATTACKER_IP:PORT) prior to running the PoC
 
----
-
-### 7) Obtained shell in Grafana container
+7) Obtained shell in Grafana container
 
 The PoC produced an interactive shell inside the Grafana container (in-lab). Within that shell:
 
@@ -104,19 +105,16 @@ GF_SECURITY_ADMIN_PASSWORD=<REDACTED_GRAFANA_ENV_PASS>
 
 The hostname looked like a Docker container id — indicating a container environment.
 
----
 
-### 8) Test SSH access with recovered credentials
 
+8) Test SSH access with recovered credentials
 Using the Grafana-container-found credentials (enzo + <REDACTED_GRAFANA_ENV_PASS>), I attempted SSH to the host:
 ssh enzo@TARGET_IP
 # password: <REDACTED_GRAFANA_ENV_PASS>
 
 Successfully authenticated as user enzo and retrieved user.txt (user flag) on the box.
 
----
-
-### 9) Enumerated local services (inside host/container)
+9) Enumerated local services (inside host/container)
 
 I checked listening services to find potential internal admin panels and services:
 
@@ -140,8 +138,6 @@ Sanitized/listening summary (from the session):
 
 The notable internal-only web service was on 127.0.0.1:8000.
 
----
-
 10) Port-forward to access internal admin (127.0.0.1:8000)
 
 From my attacker host I forwarded the target's localhost:8000 to my local port 8000:
@@ -151,9 +147,7 @@ ssh -L 8000:127.0.0.1:8000 enzo@TARGET_IP
 
 When I tried the obvious credentials (admin / enzo-password), they failed on this internal UI.
 
----
-
-### 11) Found cron/backup configuration (crontab.db)
+11) Found cron/backup configuration (crontab.db)
 
 While enumerating files (from the container), I discovered crontab.db. Inspecting the file revealed:
 
@@ -167,19 +161,16 @@ A cleanup script invoked from root directory (i.e., actions run as root)
 
 This indicated the backup/cron job ran with root privileges and used the discovered backup password — a critical escalation opportunity.
 
----
-
-### 12) Use backup/root credentials to access internal admin
+12) Use backup/root credentials to access internal admin
 
 Using the discovered backup/root credentials (the password above), I authenticated to the internal admin UI on 127.0.0.1:8000 as root (or with root-level privileges) and gained administrative access.
 
----
-
-### 13) Achieve full root via setuid / cron technique
+13) Achieve full root via setuid / cron technique
 
 In-lab, after gaining admin/root access via the internal UI, I performed the following (lab-only) to get a persistent root shell:
 
-**Action performed (lab-only)**
+**Action performed (lab-only)
+**
 
 # setuid /bin/bash (performed in the lab environment)
 chmod u+s /bin/bash
@@ -194,8 +185,6 @@ Accessed /root/root.txt (root flag) to confirm root.
 
 Important: setting setuid on system binaries is destructive / dangerous and should never be performed on real systems. The above is described for completeness of lab chain only.
 
----
-
 Impact
 Remote compromise of an admin web console (Grafana) led to container shell access; internal config and cron-driven backups exposed credentials that enabled access to an internal admin UI and ultimately root. This represents complete host compromise and significant risk to confidentiality, integrity and availability.
 Remediation (prioritized)
@@ -209,5 +198,6 @@ Ensure cron scripts and backup inputs are owned by root and not writable by web 
 Limit container privileges and avoid mounting host-sensitive resources (Docker socket) into application containers.
 
 Log and alert on changes to cron, setuid changes, and unexpected web-writable locations being modified.
+
 
 
