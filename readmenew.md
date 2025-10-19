@@ -54,7 +54,7 @@ I used semantic HTML and modular CSS to keep the codebase clean and scalable. Th
 
 ## 🔐 Cybersecurity Focus
 
-### Certifications Timeline
+### 🧪 Certifications Timeline
 | Certification              | Status        | Target Date     |
 |---------------------------|---------------|-----------------|
 | Certified in Cybersecurity (CC) | ✅ Completed | Nov 2024        |
@@ -62,7 +62,7 @@ I used semantic HTML and modular CSS to keep the codebase clean and scalable. Th
 | Offensive Security Certified Professional (OSCP) | 🧠 Self-study begins | Oct 2025        |
 | OSCP Certification         | 🎯 Goal       | Mar 2026        |
 
-### Tools & Skills
+### 🛠 Tools & Skills
 - Vulnerability scanning (Nmap, Wireshark)  
 - Threat analysis & ethical hacking  
 - Web security fundamentals  
@@ -98,5 +98,5 @@ All public writeups describe exploitation performed in controlled labs or on ret
 
 ---
 
-## License
+## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
