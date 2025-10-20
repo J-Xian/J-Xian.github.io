@@ -26,6 +26,8 @@ Beyond the technical side, I value clarity, ethics, and persistence — qualitie
 If you're a fellow practitioner, recruiter, or enthusiast, I’d love to connect.  
 You can explore my writeups on the [Home](/) page or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for professional connections and discussions.
 
----
+<hr style="border-color: rgba(255,255,255,0.1); margin: 1.5rem 0;">
 
-> “A penetration tester doesn’t walk the easy path — they forge it, one exploit, one failure, one victory at a time. Every broken barrier is proof that persistence is the sharpest tool you’ll ever wield.”
+<blockquote style="font-style: italic; color: #a5bbdd; border-left: 3px solid #5cc8ff; padding-left: 1rem;">
+  “A penetration tester doesn’t walk the easy path — they forge it, one exploit, one failure, one victory at a time. Every broken barrier is proof that persistence is the sharpest tool you’ll ever wield.”
+</blockquote>
