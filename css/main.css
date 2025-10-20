@@ -449,3 +449,88 @@ body.light .writeups-home .modal,
 :root.theme-light .writeups-home .modal {
   background: rgba(0,0,0,.4);
 }
+
+/* --- FINAL LIGHT/DARK BALANCE PATCH FOR WRITEUPS --- */
+
+/* Shared fixes for both modes */
+.writeups-home .doc code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Dark mode  */
+.writeups-home {
+  --panel-bg: #0f1a2e;
+  --text-color: #e7f0ff;
+  --accent-color: #5cc8ff;
+  --muted-color: #a5bbdd;
+  --inline-code-bg: #0a1326;
+  --inline-code-text: #e7f0ff;
+  --heading-color: #a9cfff;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  .writeups-home {
+    --panel-bg: #ffffff;
+    --text-color: #111827;
+    --accent-color: #0a66c2;
+    --muted-color: #475569;
+    --inline-code-bg: #f3f4f6;
+    --inline-code-text: #111827;
+    --heading-color: #0b2540;
+  }
+
+  /* Modal background & borders */
+  .writeups-home .modal-content {
+    background: var(--panel-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Headings */
+  .writeups-home .doc h1,
+  .writeups-home .doc h2,
+  .writeups-home .doc h3,
+  .writeups-home .doc h4 {
+    color: var(--heading-color) !important;
+  }
+
+  /* Paragraph text */
+  .writeups-home .doc,
+  .writeups-home .doc p,
+  .writeups-home .doc li,
+  .writeups-home .doc strong,
+  .writeups-home .doc em {
+    color: var(--text-color) !important;
+  }
+
+  /* Links */
+  .writeups-home .doc a {
+    color: var(--accent-color) !important;
+  }
+
+  /* Inline & block code */
+  .writeups-home .doc code {
+    background: var(--inline-code-bg) !important;
+    color: var(--inline-code-text) !important;
+  }
+  .writeups-home .doc pre {
+    background: #f6f8fa !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Cards */
+  .writeups-home .card {
+    background: #ffffff !important;
+    color: var(--text-color) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Modal overlay */
+  .writeups-home .modal {
+    background: rgba(0, 0, 0, 0.35) !important;
+  }
+}
