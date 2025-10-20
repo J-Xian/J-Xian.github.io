@@ -202,19 +202,6 @@ type root.txt</code></pre>
       <p>Full host compromise: anonymous FTP + writable webroot allowed remote payload upload → web-executable payload → remote shell → local exploit → SYSTEM.</p>
       <p>On real systems this chain would allow attackers to exfiltrate sensitive data, create persistence, and move laterally.</p>
       <hr>
-      <h2>Vulnerabilities &amp; references</h2>
-      <ul>
-        <li><strong>MS10-015</strong> — Microsoft Security Bulletin (Windows kernel vulnerabilities). See Microsoft advisory.</li>
-        <li><strong>CVE-2010-0232</strong> — “Windows Kernel Exception Handler Vulnerability” (KiTrap0D). See NVD.</li>
-        <li><strong>CVE-2010-0233</strong> — related Windows kernel elevation-of-privilege issue addressed in MS10-015 (see the bulletin/CVE records).</li>
-        <li><strong>Exploit references / modules:</strong>
-          <ul>
-            <li>Metasploit module <code>exploit/windows/local/ms10_015_kitrap0d</code> (module description and usage)</li>
-            <li>Public exploit writeups (KiTrap0D / kitrap0d)</li>
-          </ul>
-        </li>
-      </ul>
-      <blockquote>In this writeup I used the 32-bit <code>ms10_015_kitrap0d</code> module (kitrap0d) against an x86 target to obtain a SYSTEM session. Choose an exploit that matches the target architecture and patch level.</blockquote>
       <hr>
       <h2>Remediation (prioritized)</h2>
       <ol>
