@@ -1,6 +1,7 @@
 Devel — Anonymous FTP → ASPX webshell → Meterpreter → Local exploit → SYSTEM (Lab)
 
 Date: 2025-10-19
+
 TL;DR: Anonymous FTP allowed uploading an ASPX webshell; I uploaded a Meterpreter ASPX payload, triggered it via HTTP to get a session, enumerated the host, ran a local exploit suggester and used a 32-bit local exploit to escalate to NT AUTHORITY\SYSTEM. All testing performed on a retired HTB lab VM in an isolated environment. PoC artifacts in this writeup are sanitized.
 
 Scope & permission
