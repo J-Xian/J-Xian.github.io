@@ -43,7 +43,7 @@ Like any good exploit chain, this site is being built step-by-step. Stay tuned.
 ---
 
 ## 🧠 How I Built This
-This portfolio was designed from scratch with a focus on clarity, creativity, and technical polish. I iteratively refined the layout, animations, and theme toggling to ensure smooth UX across devices. Every element — from the favicon to the scroll-triggered fade-ins — reflects my attention to detail and passion for visual storytelling.
+This portfolio was designed from scratch with a focus on clarity, creativity, and technical polish. I iteratively refined the layout, animations to ensure smooth UX across devices. Every element — from the favicon to the scroll-triggered fade-ins — reflects my attention to detail and passion for visual storytelling.
 
 I used semantic HTML and modular CSS to keep the codebase clean and scalable. The site is deployed via GitHub Pages using Jekyll, allowing for easy updates and version control.
 
