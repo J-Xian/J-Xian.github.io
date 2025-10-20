@@ -23,11 +23,11 @@ You can download my full CV below:
 
 ### Core Focus Areas
 - Penetration Testing & Vulnerability Assessment (Web / Network)
-- Post-exploitation & Privilege Escalation (lab-based experience)  
-- Web application security testing (OWASP-style assessments)  
-- Container and host reconnaissance in lab environments
-- Security Fundamentals (CEH, TryHackMe Jr Penetration Tester, ISC2 CC)
-- Continuous Learning & Lab-Based Skill Development
+- Post-Exploitation & Privilege Escalation (lab-based experience)
+- Web Application Security Testing (OWASP-style)
+- Container and Host Reconnaissance in Lab Environments
+- Security Fundamentals (ISC2 CC, CEH, TryHackMe Jr Penetration Tester)
+- Continuous Skill Development (CPTS, OSCP Preparation)
 
 ---
 
