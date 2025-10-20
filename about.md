@@ -18,6 +18,8 @@ What drives me is the problem-solving nature of cybersecurity — the thrill of 
 - Network and web application security
 - Container and cloud environment exploitation
 - Continuous learning through certification paths (ISC2 CC, CEH, CPTS, OSCP)
+&nbsp;
+&nbsp;
 
 Beyond the technical side, I value clarity, ethics, and persistence — qualities I bring into every engagement and collaboration.
 
