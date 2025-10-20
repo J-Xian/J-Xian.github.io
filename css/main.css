@@ -395,4 +395,58 @@ a:hover {
   .chain-container {
     top: -60px;
   }
+
+  /* === Universal Light/Dark Mode Support (Safe Add-on) === */
+
+/* Default */
+.writeups-home {
+  --panel: #0f1a2e;
+  --card: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  --border: rgba(255,255,255,.10);
+  --text: #e7f0ff;
+  --muted: #a5bbdd;
+  --accent: #5cc8ff;
+}
+
+/* Fix text color inheritance */
+.writeups-home,
+.writeups-home .doc,
+.writeups-home .modal-content {
+  color: var(--text);
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+/* === Light mode overrides (auto-detect system preference) === */
+@media (prefers-color-scheme: light) {
+  .writeups-home {
+    --panel: #ffffff;
+    --card: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.01));
+    --border: rgba(0,0,0,.15);
+    --text: #0b1020;
+    --muted: #334155;
+    --accent: #0a66c2;
+  }
+  .writeups-home .modal {
+    background: rgba(0,0,0,.4); /* darker overlay on light background */
+  }
+}
+
+/* === Optional: also respond to site theme toggles === */
+body.light .writeups-home,
+[data-theme="light"] .writeups-home,
+:root.theme-light .writeups-home {
+  --panel: #ffffff;
+  --card: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.01));
+  --border: rgba(0,0,0,.15);
+  --text: #0b1020;
+  --muted: #334155;
+  --accent: #0a66c2;
+}
+body.light .writeups-home .modal,
+[data-theme="light"] .writeups-home .modal,
+:root.theme-light .writeups-home .modal {
+  background: rgba(0,0,0,.4);
+}
+
 }
