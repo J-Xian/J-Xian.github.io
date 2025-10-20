@@ -26,7 +26,7 @@ You can download my full CV below:
 - Post-exploitation & Privilege Escalation (lab-based experience)  
 - Web application security testing (OWASP-style assessments)  
 - Container and host reconnaissance in lab environments
-- Security Fundamentals (CPTS, OSCP, CEH, ISC2 CC)
+- Security Fundamentals (CEH, TryHackMe Jr Penetration Tester, ISC2 CC)
 - Continuous Learning & Lab-Based Skill Development
 
 ---
