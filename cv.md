@@ -18,7 +18,7 @@ You can download my full CV below:
     <i class="fa-solid fa-file-pdf"></i> Download My CV (PDF)
   </a>
 </p>
-
+<p align="center"><small>Last updated: {{ site.time | date: "%B %Y" }}</small></p>
 ---
 
 ### Core Focus Areas
