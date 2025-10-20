@@ -1,21 +1,38 @@
 ---
-
 layout: default
+title: Curriculum Vitae
+---
 
-title: CV
+## Curriculum Vitae  
+### A Snapshot of My Professional Journey
+
+Thank you for your interest in my background.  
+
+My CV highlights my technical expertise, certifications, and hands-on experience in **offensive cybersecurity** and **penetration testing**.  
+It reflects both my academic foundation and my practical involvement in ethical hacking labs and simulations.
+
+You can download my full CV below:
+
+<p align="center">
+  <a href="/File/Jing_Xian_Ching_CV.pdf" download class="cool-button">
+    <i class="fa-solid fa-file-pdf"></i> Download My CV (PDF)
+  </a>
+</p>
 
 ---
 
-## My Curriculum Vitae
+### Core Focus Areas
+- Penetration Testing & Vulnerability Assessment (Web / Network)
+- Post-exploitation & Privilege Escalation (lab-based experience)  
+- Web application security testing (OWASP-style assessments)  
+- Container and host reconnaissance in lab environments
+- Security Fundamentals (CPTS, OSCP, CEH, ISC2 CC)
+- Continuous Learning & Lab-Based Skill Development
 
-Thank you for your interest in my professional background.
+---
 
-My CV details my skills, qualifications, and experience in the field of cybersecurity, with a focus on offensive security practices.
+*For recruiters:* the CV is updated periodically — please reference the download date or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for the latest version.
 
-You can download my full CV in PDF format by clicking the button below.
+---
 
-<p align="center">
-
-<a href="/File/Jing_Xian_Ching_CV.pdf" download class="cool-button">Download CV</a>
-
-</p>
+> “Break systems, not spirit. Learn, exploit, evolve.”
