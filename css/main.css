@@ -395,6 +395,7 @@ a:hover {
   .chain-container {
     top: -60px;
   }
+}
 
   /* === Universal Light/Dark Mode Support (Safe Add-on) === */
 
@@ -447,6 +448,4 @@ body.light .writeups-home .modal,
 [data-theme="light"] .writeups-home .modal,
 :root.theme-light .writeups-home .modal {
   background: rgba(0,0,0,.4);
-}
-
 }
