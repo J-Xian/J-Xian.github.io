@@ -31,7 +31,7 @@ You can download my full CV below:
 
 ---
 
-*For recruiters:* the CV is updated periodically — please reference the download date or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for the latest version.
+*For recruiters:* the CV is updated periodically — please refer to the last updated date or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for the latest version.
 
 ---
 
