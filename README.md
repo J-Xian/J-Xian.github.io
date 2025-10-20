@@ -29,7 +29,6 @@ Like any good exploit chain, this site is being built step-by-step. Stay tuned.
 ---
 
 ## ✨ Features
-- Dark/light theme toggle  
 - Scroll-triggered animations  
 - Responsive layout for all devices  
 - Semantic HTML and clean CSS  
