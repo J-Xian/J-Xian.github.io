@@ -23,7 +23,7 @@ What drives me is the problem-solving nature of cybersecurity — the thrill of 
 Beyond the technical side, I value clarity, ethics, and persistence — qualities I bring into every engagement and collaboration.
 
 If you're a fellow practitioner, recruiter, or enthusiast, I’d love to connect.  
-You can explore my writeups on the [Home](/) page or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for professional connections and discussions.
+You can explore my writeups on the [Home](/) page or reach out via [LinkedIn](https://linkedin.com/in/j-xian) for professional connections and discussions.
 
 <hr style="border-color: rgba(255,255,255,0.1); margin: 1.5rem 0;">
 
