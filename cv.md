@@ -33,6 +33,8 @@ You can download my full CV below:
 
 *For recruiters:* the CV is updated periodically — please refer to the last updated date or reach out via [LinkedIn](https://linkedin.com/in/j-xian-ching) for the latest version.
 
----
+<hr style="border-color: rgba(255,255,255,0.1); margin: 1.5rem 0;">
 
-> “Break systems, not spirit. Learn, exploit, evolve.”
+<blockquote style="font-style: italic; color: #a5bbdd; border-left: 3px solid #5cc8ff; padding-left: 1rem;">
+  “Break systems, not spirit. Learn, exploit, evolve.”
+</blockquote>
