@@ -19,7 +19,7 @@
 ## What’s in this repo
 - `index.html` — Portfolio site (GitHub Pages / Jekyll).  
 - `writeups/` — Published writeups (sanitized PoC, screenshots, remediation).  
-- `cv.pdf` — One-page CV (downloadable).
+- `File/cv.pdf` — Two-page CV (downloadable).
 
 ---
 
