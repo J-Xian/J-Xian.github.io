@@ -162,7 +162,7 @@ ls /c/Users/Administrator/.ssh
 I copied `id_rsa` securely to the attacker machine (out of band). Locally, set strict permissions and connect:
 
 ```bash
-chmod 605 id_rsa
+chmod 600 id_rsa
 ssh -i id_rsa administrator@TARGET_IP
 ```
 
