@@ -56,8 +56,7 @@ I used semantic HTML and modular CSS to keep the codebase clean and scalable. Th
 |---------------------------|---------------|-----------------|
 | Certified in Cybersecurity (CC) | ✅ Completed | Nov 2024        |
 | Certified Ethical Hacker (CEH)  | ✅ Completed | Aug 2025        |
-| Offensive Security Certified Professional (OSCP) | 🧠 Self-study begins | Oct 2025        |
-| OSCP Certification         | 🎯 Goal       | Mar 2026        |
+| OSCP Certification         | ⏳ Deferred      | Currently focusing on cybersecurity work experience; self-study continues       |
 
 ### 🛠 Tools & Skills
 - Vulnerability scanning (Nmap, Wireshark)  
